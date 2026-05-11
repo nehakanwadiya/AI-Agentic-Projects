@@ -9,7 +9,7 @@ No paid subscriptions — everything runs on Groq (free) + local embeddings.
 - [x] Day 1 — Groq API + LLM basics
 - [x] Day 2 — Tool Use + RAG from scratch
 - [x] Day 3 — LangChain Agent + Memory + RAG combined
-- [ ] Day 4 — CrewAI Multi-Agent Job Analyser
+- [x] Day 4 — CrewAI Multi-Agent Job Analyser
 - [ ] Day 5 — Streamlit UI deployment
 
 ---
@@ -64,9 +64,13 @@ Full conversational AI assistant that remembers context across turns, searches a
 
 ---
 
-### 4. CrewAI Multi-Agent Job Analyser *(Coming)*
+### 4. CrewAI Multi-Agent Job Analyser
 Two AI agents collaborating — one researches a job description, one writes a personalised cover letter.
-
+A real web app where anyone can 
+1. Paste a job description
+2. Upload their resume PDF
+3. Click "Analyse"
+4. Get → fit score + cover letter
 ---
 
 ### 5. Streamlit Deployed UI *(Coming)*
