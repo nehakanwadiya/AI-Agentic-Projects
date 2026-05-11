@@ -17,7 +17,7 @@ No paid subscriptions — everything runs on Groq (free) + local embeddings.
 ## Projects Built
 
 ### 1. LLM Basics + Tool Use Agent
-**File:** `day1_day2_tool_use.ipynb`
+**File:** `day1_groq.ipynb`
 
 First agent that calls Python functions autonomously — LLM decides which tool to use and when, without being explicitly told.
 
