@@ -136,7 +136,6 @@ Built in 5 days
 
 ##  About
 Built as part of a structured placement preparation plan targeting  
-high-paying product companies at IIT Bombay.
 
 **Contact:**  
 📧 23b1852@iitb.ac.in  
