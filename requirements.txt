@@ -1,7 +1,8 @@
-streamlit==1.32.0
+streamlit
+pypdf
+litellm
+groq
+langchain-groq
 crewai==0.28.0
-langchain-groq==0.1.3
-pypdf==4.1.0
-litellm==1.35.0
-pydantic==2.6.4
 chromadb==0.4.24
+pydantic==1.10.21
