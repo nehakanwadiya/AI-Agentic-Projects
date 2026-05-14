@@ -1,0 +1,26 @@
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Personal files — don't push these
+*.pdf
+*.csv
+
+# API keys
+.env
+config.py
+secrets.py
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# Model cache (large files)
+*.bin
+*.pt
+
+# Streamlit secrets
+.streamlit/secrets.toml
