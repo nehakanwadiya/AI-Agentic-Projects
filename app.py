@@ -14,24 +14,15 @@ st.title("AI Career Assistant")
 st.markdown("**Powered by LLaMA 3.3 · Built by Neha Kanwadiya, IIT Bombay**")
 st.divider()
 
-<<<<<<< HEAD
-# ── SIDEBAR ──
-=======
 # ── SIDEBAR INPUTS ──
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
 with st.sidebar:
     st.header("Your Details")
     api_key = st.text_input("Groq API Key", type="password", placeholder="gsk_...")
     uploaded_file = st.file_uploader("Upload Resume PDF", type=["pdf"])
-<<<<<<< HEAD
-    if uploaded_file:
-        st.success("Resume uploaded")
-=======
     
     if uploaded_file:
         st.success("Resume uploaded")
     
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
     st.divider()
     st.markdown("**How to use:**")
     st.markdown("1. Enter Groq API key")
@@ -49,11 +40,7 @@ job_description = st.text_area(
 # ── TABS ──
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "Fit Analysis",
-<<<<<<< HEAD
-    "ATS Scanner",
-=======
     "ATS Scanner", 
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
     "Interview Prep",
     "Cover Letter",
     "LinkedIn Message"
@@ -75,11 +62,7 @@ def validate():
         return False
     return True
 
-<<<<<<< HEAD
-# ── TAB 1: FIT ANALYSIS ──
-=======
 # ── TAB 1: FIT ANALYSIS + COVER LETTER ──
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
 with tab1:
     st.subheader("Job Fit Analysis")
     if st.button("Analyse Fit", type="primary", key="fit"):
@@ -106,11 +89,7 @@ Provide:
                 # Extract score for visual meter
                 score_resp = client.chat.completions.create(
                     model="llama-3.3-70b-versatile",
-<<<<<<< HEAD
-                    messages=[{"role": "user",
-=======
                     messages=[{"role": "user", 
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
                                "content": f"Extract only the numeric score out of 10 from this text. Return only the number, nothing else: {result}"}]
                 )
                 try:
@@ -135,12 +114,9 @@ with tab2:
             resume_text = extract_resume(uploaded_file)
             with st.spinner("Scanning ATS compatibility..."):
                 client = Groq(api_key=api_key)
-<<<<<<< HEAD
-
+                
+                # ATS Analysis
                 ats_response = client.chat.completions.create(
-=======
-                response = client.chat.completions.create(
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
                     model="llama-3.3-70b-versatile",
                     messages=[{"role": "user", "content": f"""You are an ATS system.
 
@@ -150,18 +126,18 @@ RESUME: {resume_text}
 Analyse ATS compatibility:
 1. Keywords PRESENT in resume (list all matches)
 2. Keywords MISSING from resume (list all gaps)
-<<<<<<< HEAD
 3. ATS pass probability: High / Medium / Low with reason
 4. Top 5 specific suggestions to improve ATS score
 5. Exact phrases to add to resume for this role"""}]
                 )
                 st.markdown(ats_response.choices[0].message.content)
-
+                
                 st.divider()
-
+                
+                # Resume rewrite suggestion
                 st.subheader("How Your Resume Should Look for This Role")
                 st.caption("AI-suggested resume bullet points tailored to this specific JD")
-
+                
                 with st.spinner("Generating tailored resume suggestions..."):
                     resume_response = client.chat.completions.create(
                         model="llama-3.3-70b-versatile",
@@ -173,7 +149,7 @@ TARGET JOB: {job_description}
 Rewrite and suggest improvements for this candidate's resume to match this job:
 
 1. Suggested Professional Summary (2-3 lines tailored to this JD)
-2. Rewritten bullet points for their most relevant internship
+2. Rewritten bullet points for their most relevant internship 
    (make it match JD keywords, add metrics where possible)
 3. Rewritten bullet points for their most relevant project
    (highlight skills the JD is asking for)
@@ -182,41 +158,27 @@ Rewrite and suggest improvements for this candidate's resume to match this job:
 
 Be very specific — use their actual experience, just reframe it for this JD."""}]
                     )
+                    
                     st.markdown(resume_response.choices[0].message.content)
-=======
-3. ATS pass probability: High / Medium / Low
-4. Top 5 specific suggestions to improve ATS score
-5. Exact phrases to add to resume for this role"""}]
-                )
-                st.markdown(response.choices[0].message.content)
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
 
 # ── TAB 3: INTERVIEW PREP ──
 with tab3:
     st.subheader("Interview Preparation")
-<<<<<<< HEAD
     st.caption("Personalised questions based on YOUR resume and this JD — solve first, then reveal answers")
-=======
-    st.caption("AI-generated questions based on YOUR resume and this specific JD")
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
     if st.button("Generate Interview Questions", type="primary", key="interview"):
         if validate():
             resume_text = extract_resume(uploaded_file)
             with st.spinner("Generating personalised interview questions..."):
                 client = Groq(api_key=api_key)
-<<<<<<< HEAD
-
+                
+                # Generate questions only first
                 q_response = client.chat.completions.create(
-=======
-                response = client.chat.completions.create(
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
                     model="llama-3.3-70b-versatile",
                     messages=[{"role": "user", "content": f"""You are a senior interviewer at a top tech company.
 
 JOB DESCRIPTION: {job_description}
 CANDIDATE RESUME: {resume_text}
 
-<<<<<<< HEAD
 Generate exactly 10 interview questions only. No answers yet.
 
 Format exactly like this:
@@ -242,10 +204,11 @@ Be specific to their actual resume projects and experience."""}]
                 )
                 questions = q_response.choices[0].message.content
                 st.markdown(questions)
-
+                
                 st.divider()
                 st.info("Try answering the questions yourself first, then reveal the suggested answers below.")
-
+                
+                # Generate answers separately — hidden behind expanders
                 with st.spinner("Preparing answer guides..."):
                     a_response = client.chat.completions.create(
                         model="llama-3.3-70b-versatile",
@@ -265,61 +228,36 @@ For each answer:
 - For behavioral: give STAR format outline
 - For system design: give key components to mention
 
-Format strictly like this:
+Format:
 A1. [answer approach]
 A2. [answer approach]
-A3. [answer approach]
-A4. [answer approach]
-A5. [answer approach]
-A6. [answer approach]
-A7. [answer approach]
-A8. [answer approach]
-A9. [answer approach]
-A10. [answer approach]"""}]
+...and so on"""}]
                     )
                     answers = a_response.choices[0].message.content
-
+                
+                # Split answers and show each behind expander
                 st.subheader("Suggested Answer Guides")
-                st.caption("Click each to reveal — attempt the question first!")
-
-                # Parse and display answers in expanders
-                answer_dict = {}
-                current_num = None
-                current_text = []
-
-                for line in answers.split('\n'):
-                    stripped = line.strip()
-                    if stripped and stripped[0] == 'A' and len(stripped) > 2 and stripped[1:3].rstrip('.').isdigit():
-                        if current_num is not None:
-                            answer_dict[current_num] = '\n'.join(current_text).strip()
-                        dot_idx = stripped.index('.')
-                        current_num = int(stripped[1:dot_idx])
-                        current_text = [stripped[dot_idx+1:].strip()]
-                    elif current_num is not None:
-                        current_text.append(line)
-
-                if current_num is not None:
-                    answer_dict[current_num] = '\n'.join(current_text).strip()
-
-                for num in range(1, 11):
-                    if num in answer_dict:
-                        with st.expander(f"Reveal Answer — Q{num}"):
-                            st.markdown(answer_dict[num])
-                    else:
-                        with st.expander(f"Reveal Answer — Q{num}"):
-                            st.markdown("Answer not generated. Try re-running.")
-=======
-Generate:
-1. 3 DSA/Technical questions likely for this role
-2. 3 questions about their specific projects (be specific to their actual projects)
-3. 3 behavioral STAR questions for this role
-4. 2 system design questions at intern level
-5. Brief suggested answer approach for each (2-3 lines)
-
-Be very specific to their actual experience and projects."""}]
-                )
-                st.markdown(response.choices[0].message.content)
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
+                answer_lines = answers.split('\n')
+                
+                current_q = ""
+                current_a = []
+                q_num = 0
+                
+                for line in answer_lines:
+                    if line.strip().startswith('A') and '.' in line[:3]:
+                        if current_q and current_a:
+                            with st.expander(f"Reveal Answer for Q{q_num}"):
+                                st.markdown('\n'.join(current_a))
+                        q_num += 1
+                        current_q = line
+                        current_a = [line]
+                    elif current_q:
+                        current_a.append(line)
+                
+                # Last answer
+                if current_q and current_a:
+                    with st.expander(f"Reveal Answer for Q{q_num}"):
+                        st.markdown('\n'.join(current_a))
 
 # ── TAB 4: COVER LETTER ──
 with tab4:
@@ -338,19 +276,11 @@ JOB: {job_description}
 
 Rules:
 - Exactly 3 short paragraphs
-<<<<<<< HEAD
-- Paragraph 1: Who they are + college + role applying for (2 sentences)
-- Paragraph 2: Most relevant internship + project (3 sentences)
-- Paragraph 3: Why this company + call to action (2 sentences)
-- No Dear Hiring Manager
-- No filler phrases like I am excited or I am passionate
-=======
 - Paragraph 1: Who they are + college + role (2 sentences)
 - Paragraph 2: Most relevant internship + project (3 sentences)
 - Paragraph 3: Why this company + call to action (2 sentences)
 - No Dear Hiring Manager
 - No filler phrases
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
 - 120-150 words total
 - Confident, direct, human tone"""}]
                 )
@@ -362,11 +292,7 @@ Rules:
 # ── TAB 5: LINKEDIN MESSAGE ──
 with tab5:
     st.subheader("LinkedIn Cold Message")
-<<<<<<< HEAD
-    st.caption("Humble, formal cold outreach to send to hiring managers")
-=======
-    st.caption("Message to send to the hiring manager directly")
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
+    st.caption("Humble, formal cold outreach message to send to hiring managers")
     if st.button("Generate LinkedIn Message", type="primary", key="linkedin"):
         if validate():
             resume_text = extract_resume(uploaded_file)
@@ -374,7 +300,6 @@ with tab5:
                 client = Groq(api_key=api_key)
                 response = client.chat.completions.create(
                     model="llama-3.3-70b-versatile",
-<<<<<<< HEAD
                     messages=[{"role": "user", "content": f"""Write a humble, formal LinkedIn cold outreach message.
 
 CANDIDATE RESUME: {resume_text}
@@ -382,36 +307,21 @@ JOB: {job_description}
 
 Rules:
 - Start with: Hi [Name],
-- Introduce as a third-year student at their college
+- Introduce yourself as a third-year student at your college
 - Mention 2-3 relevant skills or experiences in one line
-- Say currently exploring internship opportunities at [Company]
+- Say you are exploring internship opportunities at [Company]
 - Express genuine interest in connecting
 - End with: Would love to connect!
 - Maximum 4 sentences
 - Under 80 words
-- Humble, warm, formal — not salesy
-- No achievements bragging — genuine introduction only
+- Humble, warm, and formal — not salesy
+- No achievements bragging — just a genuine introduction
 
-Example style to follow:
+Example style:
 Hi [Name], I'm a third-year student at IIT Bombay with experience in 
 backend development, REST APIs, and AI/ML projects. I'm currently 
 exploring SWE and AI internship opportunities at [Company] and would 
 love to connect!"""}]
-=======
-                    messages=[{"role": "user", "content": f"""Write a LinkedIn connection request message.
-
-JOB: {job_description}
-CANDIDATE RESUME: {resume_text}
-
-Rules:
-- Maximum 5 sentences
-- Start with Hi [Name],
-- Mention college and one specific achievement
-- Reference something specific about the company or role
-- End with clear ask
-- Under 100 words
-- Natural, not salesy"""}]
->>>>>>> be2cf40a93ffd610412ada52f0dd08dc3c90acd8
                 )
                 msg = response.choices[0].message.content
                 st.markdown(msg)
