@@ -17,19 +17,15 @@ st.divider()
 # ── SIDEBAR INPUTS ──
 with st.sidebar:
     st.header("Your Details")
-    api_key = st.text_input("Groq API Key", type="password", placeholder="gsk_...")
     uploaded_file = st.file_uploader("Upload Resume PDF", type=["pdf"])
-    
     if uploaded_file:
         st.success("Resume uploaded")
-    
     st.divider()
     st.markdown("**How to use:**")
-    st.markdown("1. Enter Groq API key")
-    st.markdown("2. Upload resume PDF")
-    st.markdown("3. Paste job description")
-    st.markdown("4. Pick a feature tab")
-    st.markdown("5. Click analyse")
+    st.markdown("1. Upload resume PDF")
+    st.markdown("2. Paste job description")
+    st.markdown("3. Pick a feature tab")
+    st.markdown("4. Click analyse")
 
 job_description = st.text_area(
     "Paste Job Description",
@@ -51,9 +47,6 @@ def extract_resume(pdf_file):
     return "".join(page.extract_text() for page in reader.pages)
 
 def validate():
-    if not api_key:
-        st.error("Enter your Groq API key in the sidebar")
-        return False
     if not uploaded_file:
         st.error("Upload your resume PDF in the sidebar")
         return False
