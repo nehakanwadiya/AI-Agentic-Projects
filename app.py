@@ -4,6 +4,9 @@ warnings.filterwarnings("ignore")
 from pypdf import PdfReader
 from groq import Groq
 
+# ADD THIS LINE HERE
+api_key = st.secrets["GROQ_API_KEY"]
+
 st.set_page_config(
     page_title="AI Career Assistant",
     page_icon="🎯",
