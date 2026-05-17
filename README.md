@@ -3,7 +3,7 @@
 
 An AI-powered web app that analyses your resume against any job description and instantly generates everything you need to apply — fit score, ATS report, interview questions, cover letter, and LinkedIn message.
 
-🔗 **Live Demo:** [Try it here](https://ai-agentic-projects.streamlit.app)  
+🔗 **Live Demo:** [Try it here](https://ai-agentic-projects-acxf7xxpeqz6ywc4z9u586.streamlit.app/)  
 > No sign up. No API key. Just upload your resume and paste a job description.
 
 ---
@@ -176,7 +176,7 @@ Two specialised AI agents collaborating on a shared task — directly inspired b
 ---
 
 ### Day 5 — Streamlit Web App (Deployed)
-**File:** `app.py` · **[Live Demo](https://ai-agentic-projects.streamlit.app)**
+**File:** `app.py` · **[Live Demo](https://ai-agentic-projects-acxf7xxpeqz6ywc4z9u586.streamlit.app/)**
 
 Production-grade web application wrapping everything into a clean, tabbed interface. Publicly deployed — no installation needed.
 
