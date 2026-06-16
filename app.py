@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 st.title("AI Career Assistant")
-st.markdown("**Powered by LLaMA 3.3 · Built by Neha Kanwadiya, IIT Bombay**")
+st.markdown("**Powered by LLaMA 3.3**")
 st.divider()
 
 # ── SIDEBAR INPUTS ──
