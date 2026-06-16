@@ -328,7 +328,7 @@ love to connect!"""}]
 st.divider()
 st.markdown("""
 <div style='text-align: center; color: grey; font-size: 12px;'>
-Built by Neha Kanwadiya · IIT Bombay · 
+# Built by Neha Kanwadiya · IIT Bombay · 
 <a href='https://github.com/nehakanwadiya'>GitHub</a> · 
 <a href='https://www.linkedin.com/in/neha-kanwadiya-076063290/'>LinkedIn</a>
 </div>
