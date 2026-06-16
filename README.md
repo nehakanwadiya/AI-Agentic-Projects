@@ -1,4 +1,4 @@
-# 🤖 AI Career Assistant — Neha Kanwadiya
+#  AI Career Assistant — Neha Kanwadiya
 > B.Tech. Engineering Physics · IIT Bombay · 2027
 
 An AI-powered web app that analyses your resume against any job description and instantly generates everything you need to apply — fit score, ATS report, interview questions, cover letter, and LinkedIn message.
